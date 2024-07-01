@@ -22,9 +22,10 @@ public class ServicioLibro {
         return repositorioLibro.findById(id);
     }
 
-    public List<Libro> getallLibros(){
+    public List<Libro> getAllLibros(){
         return repositorioLibro.findAll();
     }
+
 
 
 }

@@ -1,7 +1,10 @@
 package com.example.biblioteca.Entidades;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 
 @Entity
@@ -12,14 +15,32 @@ public class Prestamo {
     private String tiempoDeprestamo;
     private String fechaDelPrestamo;
 
+    public Libro getLibro() {
+        return libro;
+    }
+
+    public void setLibro(Libro libro) {
+        this.libro = libro;
+    }
+
     @ManyToOne
     @JoinColumn(name = "Cliente_ID")
     @JsonBackReference
     private Cliente cliente;
 
+    @ManyToOne
+    @JoinColumn(name = "Libro_ID")
+    @JsonManagedReference
+    private Libro libro;
+
+    public Prestamo() {
+
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
+
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;

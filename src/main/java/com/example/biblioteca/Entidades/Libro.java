@@ -1,7 +1,12 @@
 package com.example.biblioteca.Entidades;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -10,13 +15,14 @@ public class Libro {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String titulo;
-    private String autor;
     private String editorial;
     private int cantidadDePaginas;
     private int anodepublicacion;
 
 
-
+    @OneToMany(mappedBy = "libro", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Prestamo> prestamo;
 
 
 
@@ -48,13 +54,6 @@ public class Libro {
         this.editorial = editorial;
     }
 
-    public String getAutor() {
-        return autor;
-    }
-
-    public void setAutor(String autor) {
-        this.autor = autor;
-    }
 
     public void setTitulo(String titulo) {
         this.titulo = titulo;
@@ -67,4 +66,14 @@ public class Libro {
     public void setId(long id) {
         this.id = id;
     }
+    public void addPrestamo(Prestamo prestamo) {
+        this.prestamo.add(prestamo);
+        prestamo.setLibro(this);
+    }
+
+    public void removePrestamo(Prestamo prestamo) {
+        this.prestamo.remove(prestamo);
+        prestamo.setLibro(null);
+    }
+
 }

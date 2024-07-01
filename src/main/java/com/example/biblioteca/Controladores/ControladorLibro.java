@@ -27,6 +27,6 @@ public class ControladorLibro {
 
     @GetMapping
     public List<Libro> getAllLibros(){
-        return servicioLibro.getallLibros();
+        return servicioLibro.getAllLibros();
     }
 }

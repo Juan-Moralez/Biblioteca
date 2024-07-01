@@ -19,6 +19,9 @@ public class ServicioCliente {
     @Autowired
     private ServicioDireccion servicioDireccion;
 
+    @Autowired
+    private ServicioPrestamo servicioPrestamo;
+
     public Cliente saveCliente(Cliente cliente) {
       return  repositorioCliente.save(cliente);
     }
@@ -33,6 +36,7 @@ public class ServicioCliente {
 
     @PostConstruct
     public void SubirDatosCliente() {
+        try{
             Cliente cliente1 = new Cliente();
             cliente1.setNombre("Juan");
             cliente1.setApellido("Moralez");
@@ -40,9 +44,19 @@ public class ServicioCliente {
             cliente1.setEmail("juan.moralez@gmail.com");
             cliente1.setTelefono("55555555");
 
-            Cliente clienteGuardado = repositorioCliente.save(cliente1);
-            servicioDireccion.subirDatosDireccion(clienteGuardado);
-            repositorioCliente.save(clienteGuardado);
+
+
+            Cliente cliente1g = repositorioCliente.save(cliente1);
+            servicioPrestamo.subirDatosPrestamo(cliente1g);
+            servicioDireccion.subirDatosDireccion(cliente1g);
+
+            repositorioCliente.save(cliente1g);
+    }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("Error al subir datos");
+        }
+
+
     }
 
 

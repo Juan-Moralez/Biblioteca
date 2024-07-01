@@ -9,8 +9,8 @@ public class Prestamo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private int tiempoDeprestamo;
-    private int fechaDelPrestamo;
+    private String tiempoDeprestamo;
+    private String fechaDelPrestamo;
 
     @ManyToOne
     @JoinColumn(name = "Cliente_ID")
@@ -33,19 +33,19 @@ public class Prestamo {
         this.id = id;
     }
 
-    public int getFechaDelPrestamo() {
+    public String getFechaDelPrestamo() {
         return fechaDelPrestamo;
     }
 
-    public void setFechaDelPrestamo(int fechaDelPrestamo) {
+    public void setFechaDelPrestamo(String fechaDelPrestamo) {
         this.fechaDelPrestamo = fechaDelPrestamo;
     }
 
-    public int getTiempoDeprestamo() {
+    public String getTiempoDeprestamo() {
         return tiempoDeprestamo;
     }
 
-    public void setTiempoDeprestamo(int tiempoDeprestamo) {
+    public void setTiempoDeprestamo(String tiempoDeprestamo) {
         this.tiempoDeprestamo = tiempoDeprestamo;
     }
 }

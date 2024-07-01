@@ -21,9 +21,9 @@ public class Cliente {
     private Direccion  direccion;
 
 
-    //* @OneToMany(mappedBy = "Cliente",cascade = CascadeType.ALL,orphanRemoval = true)
-    //* @JsonManagedReference
-    //*private List<Prestamo> prestamo;
+     @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL)
+     @JsonManagedReference
+     private List<Prestamo> prestamo;
 
     public Direccion getDireccion() {
         return direccion;
@@ -81,15 +81,15 @@ public class Cliente {
         this.id = id;
     }
 
-    //* public void addPrestamo(Prestamo prestamo) {
-    //*   this.prestamo.add(prestamo);
-    //*  prestamo.setCliente(this);
-    //*  }
+     public void addPrestamo(Prestamo prestamo) {
+       this.prestamo.add(prestamo);
+      prestamo.setCliente(this);
+      }
 
-//*     public void removePrestamo(Prestamo prestamo) {
-    //*    this.prestamo.remove(prestamo);
-    //*       prestamo.setCliente(null);
-    //* }
+    public void removePrestamo(Prestamo prestamo) {
+        this.prestamo.remove(prestamo);
+           prestamo.setCliente(null);
+     }
 
 
 }
